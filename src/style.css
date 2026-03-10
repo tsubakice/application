@@ -3,6 +3,9 @@
   font-size: 100%;
   text-rendering: optimizeLegibility;
   line-height: 1.5;
+
+  --container-width: 1200px;
+  --container-margin: 0 auto;
 }
 
 *, *::before, *::after {
