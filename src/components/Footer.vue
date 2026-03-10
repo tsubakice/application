@@ -16,7 +16,7 @@ const contacts: Array<{ id: number, label: string, image: string }> = reactive([
 <template>
   <el-row class="footer">
     <el-col :span="8" class="footer-left">
-      <img src="/src/assets/images/footer/logo.png" alt="logo">
+      <img src="@/assets/images/footer/logo.png" alt="logo">
       <el-text tag="p" v-for="line in lines" :key="line.id">{{ line.text }}</el-text>
     </el-col>
     <el-col :span="16" class="footer-right">

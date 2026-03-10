@@ -46,13 +46,14 @@ const articles: Articles = reactive([
     height: 120px;
     padding: 14px 16px;
     background: url("@/assets/images/body/organization.png") center / 100% 100% no-repeat;
-    transition: transform .5s;
+    transition: transform .5s, box-shadow .5s;
 
     &:nth-child(n + 2) {
       margin-top: 20px;
     }
 
     &:hover {
+      box-shadow: 0 0 2px #bdab85;
       transform: scale(1.025);
     }
   }

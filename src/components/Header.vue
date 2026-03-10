@@ -9,6 +9,7 @@ const active = ref('home')
 const tabs: Tabs = reactive([
   { id: 0, name: 'home', label: '首页' },
   { id: 1, name: 'organization', label: '组织机构', image: '/src/assets/images/body/organization.jpg' },
+  { id: 2, name: 'regulation', label: '组织机构', image: '/src/assets/images/body/regulation.png' },
 ])
 
 const router = useRouter()
@@ -29,7 +30,7 @@ watch(() => route.path, (path: string) => {
 <template>
   <el-row class="header">
     <el-col :span="12" class="header-left">
-      <img src="/src/assets/images/header/logo.png" alt="logo">
+      <img src="@/assets/images/header/logo.png" alt="logo">
     </el-col>
     <el-col :span="12" class="header-right">
       <div class="search">
