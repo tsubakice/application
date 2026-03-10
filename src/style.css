@@ -6,6 +6,7 @@
 
   --container-width: 1200px;
   --container-margin: 0 auto;
+  --color-primary: #980f09;
 }
 
 *, *::before, *::after {

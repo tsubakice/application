@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import Footer from '@/components/Footer.vue'
+import Header from '@/components/Header.vue'
 </script>
 
 <template>
   <el-container>
-    <el-header>Header</el-header>
+    <el-header height="fit-content">
+      <Header/>
+    </el-header>
     <el-main>Main</el-main>
     <el-footer height="270px">
       <div class="container">
@@ -18,6 +21,10 @@ import Footer from '@/components/Footer.vue'
 .container {
   width: var(--container-width);
   margin: var(--container-margin);
+}
+
+header {
+  --el-header-padding: 0;
 }
 
 footer {
