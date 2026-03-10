@@ -8,7 +8,11 @@ import Header from '@/components/Header.vue'
     <el-header height="fit-content">
       <Header/>
     </el-header>
-    <el-main>Main</el-main>
+    <el-main>
+      <div class="container">
+        <RouterView/>
+      </div>
+    </el-main>
     <el-footer height="270px">
       <div class="container">
         <Footer/>
@@ -25,6 +29,10 @@ import Header from '@/components/Header.vue'
 
 header {
   --el-header-padding: 0;
+}
+
+main {
+  --el-main-padding: 0;
 }
 
 footer {

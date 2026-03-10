@@ -1,11 +1,29 @@
 <script setup lang="ts">
 import { IconChevronsRight, IconHome, IconSearch } from '@tabler/icons-vue'
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
+import type { Tabs } from '@/assets/type'
+import { useRoute, useRouter } from 'vue-router'
+import type { TabsPaneContext } from 'element-plus'
 
 const active = ref('home')
-const tabs: Array<{ id: number, name: string, label: string, image?: string }> = reactive([
+const tabs: Tabs = reactive([
   { id: 0, name: 'home', label: '首页' },
+  { id: 1, name: 'organization', label: '组织机构', image: '/src/assets/images/body/organization.jpg' },
 ])
+
+const router = useRouter()
+const switchToHome = () => router.push('/')
+const switchTab = (tab: TabsPaneContext) => {
+  if (!tab.active) {
+    router.push('/' + tab.paneName)
+  }
+}
+
+const route = useRoute()
+watch(() => route.path, (path: string) => {
+  const [, name] = path.split('/')
+  active.value = name ?? 'home'
+})
 </script>
 
 <template>
@@ -22,7 +40,7 @@ const tabs: Array<{ id: number, name: string, label: string, image?: string }> =
       <el-text>2026-03-10 星期二 农历正月廿二</el-text>
     </el-col>
   </el-row>
-  <el-tabs v-model="active">
+  <el-tabs v-model="active" @tab-click="switchTab">
     <el-tab-pane
         v-for="tab in tabs"
         :key="tab.id"
@@ -38,7 +56,7 @@ const tabs: Array<{ id: number, name: string, label: string, image?: string }> =
             <IconHome/>
           </el-icon>
           <el-text>当前位置：</el-text>
-          <el-text>首页</el-text>
+          <el-text @click="switchToHome">首页</el-text>
           <el-icon size="20px" color="#bdab85">
             <IconChevronsRight/>
           </el-icon>
@@ -122,6 +140,11 @@ const tabs: Array<{ id: number, name: string, label: string, image?: string }> =
 :deep(.el-tabs__item) {
   padding: 0 32px;
   font-weight: 600;
+  transition: transform .5s, color .5s;
+
+  &:hover {
+    transform: translateY(-5px) scale(1.1);
+  }
 }
 
 .title {
