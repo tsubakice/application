@@ -25,6 +25,16 @@ const tabs: Tabs = reactive([
       { id: 52, name: 'provincial', label: '省级非遗代表性传承人' },
     ],
   },
+  {
+    id: 60,
+    name: 'ecology',
+    label: '文化生态保护区',
+    image: '/src/assets/images/body/ecology.jpg',
+    children: [
+      { id: 61, name: 'national', label: '国家级文化生态保护区' },
+      { id: 62, name: 'provincial', label: '省级文化生态保护实验区' },
+    ],
+  },
 ])
 
 const router = useRouter()
@@ -49,7 +59,7 @@ watch(() => route.path, (path: string) => {
 <template>
   <el-row class="header">
     <el-col :span="12" class="header-left">
-      <img src="@/assets/images/header/logo.png" alt="logo">
+      <img @click="switchToHome" src="@/assets/images/header/logo.png" alt="logo">
     </el-col>
     <el-col :span="12" class="header-right">
       <div class="search">
@@ -112,6 +122,7 @@ watch(() => route.path, (path: string) => {
 
   > img {
     height: 36px;
+    cursor: pointer;
   }
 }
 
@@ -186,6 +197,7 @@ watch(() => route.path, (path: string) => {
 
       --el-font-size-base: 20px;
       --el-text-color-primary: white;
+      --el-tabs-header-height: 70px;
 
       .el-tabs__active-bar {
         height: 5px;
