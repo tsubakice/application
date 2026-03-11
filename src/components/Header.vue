@@ -35,6 +35,17 @@ const tabs: Tabs = reactive([
       { id: 62, name: 'provincial', label: '省级文化生态保护实验区' },
     ],
   },
+  {
+    id: 70,
+    name: 'protection',
+    label: '保护传承基地',
+    image: '/src/assets/images/body/protection.png',
+    children: [
+      { id: 71, name: 'cIBase', label: '非遗保护传承基地' },
+      { id: 72, name: 'pPDBase', label: '生产性保护示范基地' },
+      { id: 73, name: 'expBase', label: '非遗体验基地' },
+    ],
+  },
 ])
 
 const router = useRouter()

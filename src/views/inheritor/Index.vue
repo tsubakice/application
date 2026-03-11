@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { useSubTabsStore } from '@/pinia/stores/subTabs.ts'
 import { storeToRefs } from 'pinia'
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import type { Batches, Inheritors, Regions, Types } from '@/assets/type'
 import types from '@/assets/share/types.json'
 import batches from '@/assets/share/batches.json'
 import regions from '@/assets/share/regions.json'
 import { IconSearch } from '@tabler/icons-vue'
+import usePage from '@/hooks/usePage.ts'
 
 defineOptions({ name: 'Inheritor' })
 
@@ -42,8 +43,7 @@ const inheritors: Inheritors = reactive([
   },
 ])
 
-const page = ref(1)
-const changePage = (value: number) => page.value = value
+const { page, changePage } = usePage()
 </script>
 
 <template>

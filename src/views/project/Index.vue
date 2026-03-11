@@ -4,6 +4,7 @@ import type { Batches, Projects, Tabs, Types } from '@/assets/type'
 import types from '@/assets/share/types.json'
 import batches from '@/assets/share/batches.json'
 import { IconSearch } from '@tabler/icons-vue'
+import usePage from '@/hooks/usePage.ts'
 
 defineOptions({ name: 'Project' })
 
@@ -42,8 +43,7 @@ const projects: Projects = reactive([
   }
 ])
 
-const page = ref(1)
-const changePage = (value: number) => page.value = value
+const { page, changePage } = usePage()
 </script>
 
 <template>

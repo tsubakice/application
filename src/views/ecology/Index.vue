@@ -54,6 +54,7 @@ ul {
     cursor: default;
 
     &:hover {
+      box-shadow: 0 0 2px var(--app-icon-color);
       transform: scale(1.025);
     }
 

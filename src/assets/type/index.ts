@@ -47,3 +47,10 @@ interface Inheritor {
   project: string,
   address: string,
 }
+
+export type Bases = Array<Base>
+interface Base {
+  id: number,
+  name: string,
+  address: string,
+}
