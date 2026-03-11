@@ -4,13 +4,27 @@ import { reactive, ref, watch } from 'vue'
 import type { Tabs } from '@/assets/type'
 import { useRoute, useRouter } from 'vue-router'
 import type { TabsPaneContext } from 'element-plus'
+import { useSubTabsStore } from '@/pinia/stores/subTabs.ts'
+import { storeToRefs } from 'pinia'
+
+const today = ref('2026-03-11 星期三 农历正月廿三')
 
 const active = ref('home')
 const tabs: Tabs = reactive([
-  { id: 0, name: 'home', label: '首页' },
-  { id: 1, name: 'organization', label: '组织机构', image: '/src/assets/images/body/organization.jpg' },
-  { id: 2, name: 'regulation', label: '组织机构', image: '/src/assets/images/body/regulation.png' },
-  { id: 3, name: 'project', label: '项目名录', image: '/src/assets/images/body/project.png' },
+  { id: 10, name: 'home', label: '首页' },
+  { id: 20, name: 'organization', label: '组织机构', image: '/src/assets/images/body/organization.jpg' },
+  { id: 30, name: 'regulation', label: '组织机构', image: '/src/assets/images/body/regulation.png' },
+  { id: 40, name: 'project', label: '项目名录', image: '/src/assets/images/body/project.png' },
+  {
+    id: 50,
+    name: 'inheritor',
+    label: '非遗传承人',
+    image: '/src/assets/images/body/inheritor.png',
+    children: [
+      { id: 51, name: 'national', label: '国家级非遗代表性传承人' },
+      { id: 52, name: 'provincial', label: '省级非遗代表性传承人' },
+    ],
+  },
 ])
 
 const router = useRouter()
@@ -22,9 +36,13 @@ const switchTab = (tab: TabsPaneContext) => {
 }
 
 const route = useRoute()
+const subTabsStore =  useSubTabsStore()
+const { active: subActive, tabs: subTabs } = storeToRefs(subTabsStore)
 watch(() => route.path, (path: string) => {
   const [, name] = path.split('/')
   active.value = name ?? 'home'
+  const tab = tabs.find(tab => tab.name === active.value)
+  subTabsStore.initSubTabs(tab?.children ?? [])
 })
 </script>
 
@@ -39,7 +57,7 @@ watch(() => route.path, (path: string) => {
           <IconSearch/>
         </el-icon>
       </div>
-      <el-text>2026-03-10 星期二 农历正月廿二</el-text>
+      <el-text>{{ today }}</el-text>
     </el-col>
   </el-row>
   <el-tabs v-model="active" @tab-click="switchTab">
@@ -52,6 +70,15 @@ watch(() => route.path, (path: string) => {
       <div v-show="tab.image">
         <div :style="{ backgroundImage: `url(${tab.image})` }" class="title">
           <h2>{{ tab.label }}</h2>
+          <el-tabs v-show="subTabs.length" v-model="subActive">
+            <el-tab-pane
+                v-for="subTab in subTabs"
+                :key="subTab.id"
+                :name="subTab.name"
+                :label="subTab.label"
+                lazy>
+            </el-tab-pane>
+          </el-tabs>
         </div>
         <div class="breadcrumb">
           <el-icon size="var(--app-icon-size)" color="var(--app-icon-color)">
@@ -68,6 +95,8 @@ watch(() => route.path, (path: string) => {
     </el-tab-pane>
   </el-tabs>
 </template>
+
+<style src="@/assets/styles/tabs.css" scoped/>
 
 <style scoped>
 .header {
@@ -112,42 +141,30 @@ watch(() => route.path, (path: string) => {
 }
 
 :deep(.el-tabs__header) {
-  margin-bottom: 0;
-
   --el-tabs-header-height: 60px;
   --el-font-size-base: 16px;
   --el-text-color-primary: var(--app-text-color);
   --el-color-primary: var(--app-color-primary);
 
-  > .el-tabs__nav-wrap {
-    margin-bottom: 0;
-
-    &::after {
-      content: none;
-    }
-
-    > .el-tabs__nav-scroll {
-      display: flex;
-      justify-content: center;
-    }
+  .el-tabs__active-bar {
+    height: 3px;
   }
-}
 
-:deep(.el-tabs__active-bar) {
-  height: 3px;
-}
+  .el-tabs__item {
+    padding: 0 32px;
+    font-weight: 600;
+    transition: color var(--app-transition-time), transform var(--app-transition-time);
 
-:deep(.el-tabs__item) {
-  padding: 0 32px;
-  font-weight: 600;
-  transition: color var(--app-transition-time), transform var(--app-transition-time);
-
-  &:hover {
-    transform: translateY(-5px) scale(1.1);
+    &:hover {
+      transform: translateY(-5px) scale(1.1);
+    }
   }
 }
 
 .title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 282px;
   background-size: cover;
 
@@ -158,6 +175,30 @@ watch(() => route.path, (path: string) => {
     font-size: 40px;
     line-height: 1.75;
     color: white;
+  }
+
+  > .el-tabs {
+    width: var(--app-container-width);
+    margin: var(--app-container-margin);
+
+    &:deep(.el-tabs__nav-scroll) {
+      justify-content: flex-start;
+
+      --el-font-size-base: 20px;
+      --el-text-color-primary: white;
+
+      .el-tabs__active-bar {
+        height: 5px;
+      }
+
+      .el-tabs__item {
+        font-weight: 800;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+      }
+    }
   }
 }
 

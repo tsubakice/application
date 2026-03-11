@@ -4,6 +4,7 @@ interface Tab {
   name: string,
   label: string,
   image?: string,
+  children?: Array<Tab>,
 }
 
 export type Articles = Array<Article>
@@ -15,12 +16,8 @@ interface Article {
   content?: string,
 }
 
-export type Types = Array<Label>
-export type Batches = Array<Label>
-interface Label {
-  id: number,
-  text: string,
-}
+export type Types = Array<{ id: number, label: string }>
+export type Batches = Types
 
 export type Projects = Array<Project>
 interface Project {
@@ -30,5 +27,23 @@ interface Project {
   type: string,
   date: string,
   unit: string,
+  address: string,
+}
+
+export type Regions = Array<Region>
+interface Region {
+  id: number,
+  label: string,
+  children: Array<Region>,
+}
+
+export type Inheritors = Array<Inheritor>
+interface Inheritor {
+  id: number,
+  name: string,
+  gender: string,
+  ethnic: string,
+  type: string,
+  project: string,
   address: string,
 }

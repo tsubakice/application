@@ -1,0 +1,51 @@
+.el-form {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto 32px;
+  padding: 20px 16px;
+  background: #bfbfbf26;
+
+  > .el-form-item {
+    margin-bottom: 0;
+
+    --form-item-width: 345px;
+    --form-item-height: 40px;
+    --form-item-color: transparent;
+
+    &:not(:last-child) {
+      border: 1px solid var(--app-icon-color);
+      box-shadow: 0 2px 4px 0 #0000001a;
+
+      --el-border-radius-base: 0;
+    }
+
+    &:last-child button {
+      width: 80px;
+      height: var(--form-item-height);
+      font-size: 16px;
+      color: white;
+      background: var(--app-color-primary);
+      border: none;
+      cursor: pointer;
+    }
+
+    .el-select {
+      --el-select-width: var(--form-item-width);
+      --el-border-color: var(--form-item-color);
+      --el-border-color-hover: var(--form-item-color);
+      --el-color-primary: var(--form-item-color);
+
+      &:deep(.el-select__wrapper) {
+        min-height: var(--form-item-height);
+      }
+    }
+
+    .el-input {
+      --el-input-width: var(--form-item-width);
+      --el-input-height: var(--form-item-height);
+      --el-input-border-color: var(--form-item-color);
+      --el-input-hover-border-color: var(--form-item-color);
+      --el-input-focus-border-color: var(--form-item-color);
+    }
+  }
+}

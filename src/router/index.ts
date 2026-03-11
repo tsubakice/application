@@ -8,5 +8,6 @@ export default createRouter({
     { path: '/organization', component: () => import('@/views/organization/Index.vue') },
     { path: '/regulation', component: () => import('@/views/regulation/Index.vue') },
     { path: '/project', component: () => import('@/views/project/Index.vue') },
+    { path: '/inheritor', component: () => import('@/views/inheritor/Index.vue') },
   ],
 })

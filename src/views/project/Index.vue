@@ -43,6 +43,7 @@ const projects: Projects = reactive([
 ])
 
 const page = ref(1)
+const changePage = (value: number) => page.value = value
 </script>
 
 <template>
@@ -70,7 +71,7 @@ const page = ref(1)
         <el-form-item>
           <el-select
               v-model="form.type"
-              :props="{ value: 'id', label: 'text' }"
+              :props="{ value: 'id' }"
               :options="projectTypes"
               placeholder="选择项目类别"
               clearable/>
@@ -78,7 +79,7 @@ const page = ref(1)
         <el-form-item>
           <el-select
               v-model="form.batch"
-              :props="{ value: 'id', label: 'text' }"
+              :props="{ value: 'id' }"
               :options="projectBatches"
               placeholder="选择项目批次"
               clearable/>
@@ -118,13 +119,17 @@ const page = ref(1)
             layout="prev, pager, next, jumper, slot"
             :page-count="16"
             v-model:current-page="page"
-            @update:current-page="(value: number) => page = value">
+            @update:current-page="changePage">
           页/共 {{ projects.length }} 条
         </el-pagination>
       </div>
     </el-tab-pane>
   </el-tabs>
 </template>
+
+<style src="@/assets/styles/table.css" scoped/>
+<style src="@/assets/styles/tabs.css" scoped/>
+<style src="@/assets/styles/form.css" scoped/>
 
 <style scoped>
 .title {
@@ -167,199 +172,36 @@ const page = ref(1)
 }
 
 :deep(.el-tabs__header) {
-  margin-bottom: 0;
-
   --el-tabs-header-height: 77px;
   --el-font-size-base: 20px;
   --el-text-color-primary: var(--app-title-color);
   --el-color-primary: white;
 
-  > .el-tabs__nav-wrap {
-    margin-bottom: 0;
+  .el-tabs__nav {
+    gap: 15px;
 
-    &::after {
-      content: none;
-    }
-
-    > .el-tabs__nav-scroll {
-      display: flex;
-      justify-content: center;
-    }
-  }
-}
-
-:deep(.el-tabs__nav) {
-  gap: 15px;
-
-  > .el-tabs__active-bar {
-    display: none;
-  }
-
-  > .el-tabs__item {
-    width: 270px;
-    padding: 0;
-    font-weight: 800;
-    background: url("@/assets/images/body/tab.png") var(--app-background-setting);
-    transition: color var(--app-transition-time), transform var(--app-transition-time);
-
-    &.is-active {
-      background: url("@/assets/images/body/tab-selected.png") var(--app-background-setting);
-    }
-
-    &:hover {
-      transform: scale(1.075);
-    }
-
-    &:not(.is-active):hover {
-      color: var(--app-title-color);
-    }
-  }
-}
-
-.el-form {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px auto 32px;
-  padding: 20px 16px;
-  background: #bfbfbf26;
-
-  > .el-form-item {
-    margin-bottom: 0;
-
-    --form-item-width: 345px;
-    --form-item-height: 40px;
-    --form-item-color: transparent;
-
-    &:not(:last-child) {
-      border: 1px solid var(--app-icon-color);
-      box-shadow: 0 2px 4px 0 #0000001a;
-
-      --el-border-radius-base: 0;
-    }
-
-    &:last-child button {
-      width: 80px;
-      height: var(--form-item-height);
-      font-size: 16px;
-      color: white;
-      background: var(--app-color-primary);
-      border: none;
-      cursor: pointer;
-    }
-
-    .el-select {
-      --el-select-width: var(--form-item-width);
-      --el-border-color: var(--form-item-color);
-      --el-border-color-hover: var(--form-item-color);
-      --el-color-primary: var(--form-item-color);
-
-      &:deep(.el-select__wrapper) {
-        min-height: var(--form-item-height);
-      }
-    }
-
-    .el-input {
-      --el-input-width: var(--form-item-width);
-      --el-input-height: var(--form-item-height);
-      --el-input-border-color: var(--form-item-color);
-      --el-input-hover-border-color: var(--form-item-color);
-      --el-input-focus-border-color: var(--form-item-color);
-    }
-  }
-}
-
-.container {
-  margin-bottom: 32px;
-  padding: 25px 10px;
-  background: #ffffffcc;
-}
-
-.el-table {
-  --el-font-size-base: 16px;
-  --el-table-text-color: black;
-
-  &:deep(.el-table__inner-wrapper)::before {
-    content: none;
-  }
-
-  &:deep(.el-table__header) {
-    --el-table-header-text-color: var(--app-icon-color);
-    --el-table-header-bg-color: #f6f4f0;
-    --el-table-border: none;
-
-    th {
-      height: 50px;
-      text-align: center;
-    }
-  }
-
-  &:deep(.el-table__body) {
-    --el-table-border: 1px dashed var(--app-icon-color);
-
-    td {
-      height: 80px;
-      text-align: center;
-    }
-  }
-}
-
-.el-pagination {
-  justify-content: center;
-  margin-top: 30px;
-
-  --el-pagination-button-width: 44px;
-  --el-pagination-button-height: 44px;
-  --el-pagination-text-color: var(--app-title-color);
-  --el-pagination-hover-color: var(--app-color-primary);
-  --el-pagination-border-radius: 0;
-
-  &:deep(button) {
-    background: url("@/assets/images/body/btn-left.png") center / contain no-repeat;
-
-    > .el-icon {
+    > .el-tabs__active-bar {
       display: none;
     }
 
-    &.btn-next {
-      background-image: url("@/assets/images/body/btn-right.png");
-    }
-  }
+    > .el-tabs__item {
+      width: 270px;
+      padding: 0;
+      font-weight: 800;
+      background: url("@/assets/images/body/tab.png") var(--app-background-setting);
+      transition: color var(--app-transition-time), transform var(--app-transition-time);
 
-  &:deep(ul) {
-    gap: 8px;
-
-    > li {
-      border: 1px dashed var(--app-icon-color);
-      border-radius: var(--el-border-radius-base);
-      transition: color var(--app-transition-time), border var(--app-transition-time);
-
-      &.is-active, &:hover {
-        border: 1px dashed var(--app-color-primary);
+      &.is-active {
+        background: url("@/assets/images/body/tab-selected.png") var(--app-background-setting);
       }
-    }
-  }
 
-  &:deep(.el-pagination__jump) {
-    --el-text-color-regular: var(--app-title-color);
+      &:hover {
+        transform: scale(1.075);
+      }
 
-    &::before {
-      content: '第';
-      padding-right: 8px;
-    }
-
-    > .el-pagination__goto {
-      display: none;
-    }
-
-    > .el-pagination__editor {
-      width: var(--el-pagination-button-width);
-      border: 1px dashed var(--app-icon-color);
-      border-radius: var(--el-border-radius-base);
-
-      --el-input-height: 28px;
-      --el-input-border-color: transparent;
-      --el-input-hover-border-color: transparent;
-      --el-input-focus-border-color: transparent;
+      &:not(.is-active):hover {
+        color: var(--app-title-color);
+      }
     }
   }
 }

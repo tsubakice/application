@@ -1,0 +1,95 @@
+.container {
+  margin-bottom: 32px;
+  padding: 25px 10px;
+  background: #ffffffcc;
+}
+
+.el-table {
+  --el-font-size-base: 16px;
+  --el-table-text-color: black;
+
+  &:deep(.el-table__inner-wrapper)::before {
+    content: none;
+  }
+
+  &:deep(.el-table__header) {
+    --el-table-header-text-color: var(--app-icon-color);
+    --el-table-header-bg-color: #f6f4f0;
+    --el-table-border: none;
+
+    th {
+      height: 50px;
+      text-align: center;
+    }
+  }
+
+  &:deep(.el-table__body) {
+    --el-table-border: 1px dashed var(--app-icon-color);
+
+    td {
+      height: 80px;
+      text-align: center;
+    }
+  }
+}
+
+.el-pagination {
+  justify-content: center;
+  margin-top: 30px;
+
+  --el-pagination-button-width: 44px;
+  --el-pagination-button-height: 44px;
+  --el-pagination-text-color: var(--app-title-color);
+  --el-pagination-hover-color: var(--app-color-primary);
+  --el-pagination-border-radius: 0;
+
+  &:deep(button) {
+    background: url("@/assets/images/body/btn-left.png") center / contain no-repeat;
+
+    > .el-icon {
+      display: none;
+    }
+
+    &.btn-next {
+      background-image: url("@/assets/images/body/btn-right.png");
+    }
+  }
+
+  &:deep(ul) {
+    gap: 8px;
+
+    > li {
+      border: 1px dashed var(--app-icon-color);
+      border-radius: var(--el-border-radius-base);
+      transition: color var(--app-transition-time), border var(--app-transition-time);
+
+      &.is-active, &:hover {
+        border: 1px dashed var(--app-color-primary);
+      }
+    }
+  }
+
+  &:deep(.el-pagination__jump) {
+    --el-text-color-regular: var(--app-title-color);
+
+    &::before {
+      content: '第';
+      padding-right: 8px;
+    }
+
+    > .el-pagination__goto {
+      display: none;
+    }
+
+    > .el-pagination__editor {
+      width: var(--el-pagination-button-width);
+      border: 1px dashed var(--app-icon-color);
+      border-radius: var(--el-border-radius-base);
+
+      --el-input-height: 28px;
+      --el-input-border-color: transparent;
+      --el-input-hover-border-color: transparent;
+      --el-input-focus-border-color: transparent;
+    }
+  }
+}
