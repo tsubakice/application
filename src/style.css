@@ -4,25 +4,29 @@
   text-rendering: optimizeLegibility;
   line-height: 1.5;
 
-  --container-width: 1200px;
-  --container-margin: 0 auto;
-  --color-primary: #980f09;
+  --app-container-width: 1200px;
+  --app-container-margin: 0 auto;
+  --app-color-primary: #980f09;
+  --app-title-color: #404040;
+  --app-text-color: #262626;
+  --app-text-label-color: #8c8c8c;
+  --app-form: ;
+  --app-icon-size: 20px;
+  --app-icon-color: #bdab85;
+  --app-background-setting: center / 100% 100% no-repeat;
+  --app-transition-time: .5s;
 }
 
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-}
-
 body {
   margin: 0;
-  background: url("@/assets/images/body/background.png") center / cover repeat-y;
+  background: url("@/assets/images/background.png") var(--app-background-setting) fixed;
 }
 
-ul {
+ul, ol {
   margin: 0;
   padding: 0;
 

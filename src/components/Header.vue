@@ -10,6 +10,7 @@ const tabs: Tabs = reactive([
   { id: 0, name: 'home', label: '首页' },
   { id: 1, name: 'organization', label: '组织机构', image: '/src/assets/images/body/organization.jpg' },
   { id: 2, name: 'regulation', label: '组织机构', image: '/src/assets/images/body/regulation.png' },
+  { id: 3, name: 'project', label: '项目名录', image: '/src/assets/images/body/project.png' },
 ])
 
 const router = useRouter()
@@ -34,7 +35,7 @@ watch(() => route.path, (path: string) => {
     </el-col>
     <el-col :span="12" class="header-right">
       <div class="search">
-        <el-icon size="20px" color="#828282">
+        <el-icon size="var(--app-icon-size)" color="var(--app-title-color)">
           <IconSearch/>
         </el-icon>
       </div>
@@ -53,12 +54,12 @@ watch(() => route.path, (path: string) => {
           <h2>{{ tab.label }}</h2>
         </div>
         <div class="breadcrumb">
-          <el-icon size="20px" color="#bdab85">
+          <el-icon size="var(--app-icon-size)" color="var(--app-icon-color)">
             <IconHome/>
           </el-icon>
           <el-text>当前位置：</el-text>
           <el-text @click="switchToHome">首页</el-text>
-          <el-icon size="20px" color="#bdab85">
+          <el-icon size="var(--app-icon-size)" color="var(--app-icon-color)">
             <IconChevronsRight/>
           </el-icon>
           <el-text>{{ tab.label }}</el-text>
@@ -70,9 +71,9 @@ watch(() => route.path, (path: string) => {
 
 <style scoped>
 .header {
-  width: var(--container-width);
+  width: var(--app-container-width);
   height: 88px;
-  margin: var(--container-margin);
+  margin: var(--app-container-margin);
   padding: 0 10px;
 }
 
@@ -90,15 +91,13 @@ watch(() => route.path, (path: string) => {
   justify-content: flex-end;
   align-items: center;
 
-  --text-color: #404040;
-
   > .search {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 36px;
     aspect-ratio: 1 / 1;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--app-title-color);
     border-radius: 50%;
     cursor: pointer;
   }
@@ -108,7 +107,7 @@ watch(() => route.path, (path: string) => {
     font-weight: 800;
 
     --el-text-font-size: 16px;
-    --el-text-color: var(--text-color);
+    --el-text-color: var(--app-title-color);
   }
 }
 
@@ -117,8 +116,8 @@ watch(() => route.path, (path: string) => {
 
   --el-tabs-header-height: 60px;
   --el-font-size-base: 16px;
-  --el-text-color-primary: #262626;
-  --el-color-primary: var(--color-primary);
+  --el-text-color-primary: var(--app-text-color);
+  --el-color-primary: var(--app-color-primary);
 
   > .el-tabs__nav-wrap {
     margin-bottom: 0;
@@ -141,7 +140,7 @@ watch(() => route.path, (path: string) => {
 :deep(.el-tabs__item) {
   padding: 0 32px;
   font-weight: 600;
-  transition: transform .5s, color .5s;
+  transition: color var(--app-transition-time), transform var(--app-transition-time);
 
   &:hover {
     transform: translateY(-5px) scale(1.1);
@@ -151,15 +150,14 @@ watch(() => route.path, (path: string) => {
 .title {
   height: 282px;
   background-size: cover;
-  background-position: left top;
 
   > h2 {
-    width: var(--container-width);
-    margin: var(--container-margin);
+    width: var(--app-container-width);
+    margin: var(--app-container-margin);
     padding-top: 86px;
     font-size: 40px;
     line-height: 1.75;
-    color: #ffffff;
+    color: white;
   }
 }
 
@@ -167,21 +165,24 @@ watch(() => route.path, (path: string) => {
   display: flex;
   align-items: center;
   gap: 2px;
-  width: var(--container-width);
+  width: var(--app-container-width);
   height: 50px;
   margin: 20px auto;
 
   > span {
-    transition: color .5s;
+    transition: color var(--app-transition-time);
     cursor: default;
 
-    --el-text-font-size: 14px;
     --el-text-color: #969696;
 
-    &:nth-of-type(n + 2):not(:last-of-type):hover {
+    &:nth-of-type(n + 2):not(:last-of-type) {
       cursor: pointer;
 
-      --el-text-color: var(--color-primary);
+      --el-text-color: #00000073;
+
+      &:hover {
+        --el-text-color: var(--app-color-primary);
+      }
     }
 
     &:last-of-type {

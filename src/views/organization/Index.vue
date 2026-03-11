@@ -35,8 +35,7 @@ const articles: Articles = reactive([
 .list {
   margin-bottom: 32px;
   padding: 28px 20px;
-  background: #ffffff;
-  cursor: default;
+  background: white;
 
   > li {
     display: flex;
@@ -45,15 +44,16 @@ const articles: Articles = reactive([
     align-items: flex-start;
     height: 120px;
     padding: 14px 16px;
-    background: url("@/assets/images/body/organization.png") center / 100% 100% no-repeat;
-    transition: transform .5s, box-shadow .5s;
+    background: url("@/assets/images/body/organization-item.png") var(--app-background-setting);
+    transition: box-shadow var(--app-transition-time), transform var(--app-transition-time);
+    cursor: default;
 
     &:nth-child(n + 2) {
       margin-top: 20px;
     }
 
     &:hover {
-      box-shadow: 0 0 2px #bdab85;
+      box-shadow: 0 0 2px var(--app-icon-color);
       transform: scale(1.025);
     }
   }
@@ -73,7 +73,7 @@ const articles: Articles = reactive([
     font-weight: 700;
 
     --el-text-font-size: 18px;
-    --el-text-color: #404040;
+    --el-text-color: var(--app-title-color);
   }
 }
 
@@ -87,7 +87,7 @@ const articles: Articles = reactive([
     width: 975px;
 
     --el-text-font-size: 16px;
-    --el-text-color: #8c8c8c;
+    --el-text-color: var(--app-text-label-color);
   }
 
   > .more {
@@ -104,7 +104,7 @@ const articles: Articles = reactive([
       cursor: pointer;
 
       --el-text-font-size: 12px;
-      --el-text-color: var(--color-primary);
+      --el-text-color: var(--app-color-primary);
     }
   }
 }

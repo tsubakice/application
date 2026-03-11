@@ -28,9 +28,7 @@ const articles: Articles = reactive([
   position: relative;
   margin-bottom: 32px;
   padding: 28px 30px;
-  background: #ffffff;
-
-  --border-color: #bdab85;
+  background: white;
 
   &::before, &::after {
     content: '';
@@ -38,7 +36,7 @@ const articles: Articles = reactive([
     top: 68px;
     bottom: 68px;
     width: 18px;
-    border: 2px solid var(--border-color);
+    border: 2px solid var(--app-icon-color);
   }
 
   &::before {
@@ -58,8 +56,8 @@ ul > li {
   align-items: center;
   padding: 0 16px;
   height: 80px;
-  border: 1px solid var(--border-color);
-  transition: transform .5s;
+  border: 1px solid var(--app-icon-color);
+  transition: transform var(--app-transition-time);
   cursor: pointer;
 
   --el-font-size-base: 16px;
@@ -72,18 +70,18 @@ ul > li {
     transform: rotateX(360deg);
 
     > .title {
-      --el-text-color: var(--color-primary);
+      --el-text-color: var(--app-color-primary);
     }
   }
 
   > .title {
-    transition: color .5s;
+    transition: color var(--app-transition-time);
 
-    --el-text-color: #000000;
+    --el-text-color: var(--app-title-color);
   }
 
   > .date {
-    --el-text-color: #8c8c8c;
+    --el-text-color: var(--app-text-label-color);
   }
 }
 </style>

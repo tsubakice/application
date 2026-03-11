@@ -23,8 +23,8 @@ import Header from '@/components/Header.vue'
 
 <style scoped>
 .container {
-  width: var(--container-width);
-  margin: var(--container-margin);
+  width: var(--app-container-width);
+  margin: var(--app-container-margin);
 }
 
 header {
@@ -36,7 +36,7 @@ main {
 }
 
 footer {
-  background: #000000;
+  background: black;
 
   --el-footer-padding: 0;
 }

@@ -32,8 +32,7 @@ const contacts: Array<{ id: number, label: string, image: string }> = reactive([
 .footer {
   line-height: 16px;
 
-  --el-font-size-base: 14px;
-  --el-text-color-regular: #ffffff;
+  --el-text-color-regular: white;
 }
 
 .footer-left {
@@ -57,7 +56,7 @@ const contacts: Array<{ id: number, label: string, image: string }> = reactive([
   justify-content: flex-end;
   padding-top: 30px;
 
-  .contact {
+  > .contact {
     padding-left: 20px;
 
     > img {

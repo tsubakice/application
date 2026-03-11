@@ -14,3 +14,21 @@ interface Article {
   date?: string,
   content?: string,
 }
+
+export type Types = Array<Label>
+export type Batches = Array<Label>
+interface Label {
+  id: number,
+  text: string,
+}
+
+export type Projects = Array<Project>
+interface Project {
+  id: number,
+  label: string,
+  name: string,
+  type: string,
+  date: string,
+  unit: string,
+  address: string,
+}
