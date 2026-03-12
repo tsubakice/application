@@ -3,6 +3,7 @@ import { useSubTabsStore } from '@/pinia/stores/subTabs.ts'
 import { storeToRefs } from 'pinia'
 import type { Articles } from '@/assets/type'
 import { computed, reactive, ref } from 'vue'
+import { useDateStore } from '@/pinia/stores/date.ts'
 
 defineOptions({ name: 'Wiki' })
 
@@ -28,9 +29,7 @@ const articles: Articles = reactive([
   { id: 4, title: '非物质文化遗产的保护主体是什么' },
 ])
 
-const today = reactive(new Date())
-const week = ['日', '一', '二', '三', '四', '五', '六']
-const day = computed(() => '星期' + week[today.getDay()])
+const { year, month, day, week, lunar } = storeToRefs(useDateStore())
 </script>
 
 <template>
@@ -40,12 +39,12 @@ const day = computed(() => '星期' + week[today.getDay()])
         <img @click="index--" src="@/assets/images/body/btn-left.png" alt="left">
         <div class="content">
           <div class="top">
-            <el-text class="day">{{ today.getDate() }}</el-text>
-            <el-text class="year">/{{ today.getFullYear() }}.{{ today.getMonth() + 1 }}</el-text>
+            <el-text class="day">{{ day }}</el-text>
+            <el-text class="year">/{{ year }}.{{ month }}</el-text>
           </div>
           <div class="bottom">
-            <el-text class="week">{{ day }}</el-text>
-            <el-text class="date">农历正月廿四</el-text>
+            <el-text class="week">{{ week }}</el-text>
+            <el-text class="date">{{ lunar }}</el-text>
           </div>
         </div>
         <img @click="index++" src="@/assets/images/body/btn-right.png" alt="right">

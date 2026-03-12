@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tabler/icons-vue": "^3.40.0",
+    "@tenado/lunarjs": "^1.0.10",
     "element-plus": "^2.13.5",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1",

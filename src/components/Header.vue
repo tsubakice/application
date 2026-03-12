@@ -1,21 +1,15 @@
 <script setup lang="ts">
 import { IconChevronsRight, IconHome, IconSearch } from '@tabler/icons-vue'
-import { computed, reactive, ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import type { Tabs } from '@/assets/type'
 import { useRoute, useRouter } from 'vue-router'
 import type { TabsPaneContext } from 'element-plus'
 import { useSubTabsStore } from '@/pinia/stores/subTabs.ts'
 import { storeToRefs } from 'pinia'
 import importTabs from '@/assets/tabs.json'
+import { useDateStore } from '@/pinia/stores/date.ts'
 
-const week = ['日', '一', '二', '三', '四', '五', '六']
-const today = computed(() => {
-  const date = new Date()
-  const year = date.getFullYear()
-  const month = `${date.getMonth() + 1}`.padStart(2, '0')
-  const day = `${date.getDate()}`.padStart(2, '0')
-  return `${year}-${month}-${day} 星期${week[date.getDay()]} 农历正月廿四`
-})
+const { ymd, week, lunar } = storeToRefs(useDateStore())
 
 const active = ref('home')
 const tabs: Tabs = reactive(importTabs)
@@ -50,7 +44,7 @@ watch(() => route.path, (path: string) => {
           <IconSearch/>
         </el-icon>
       </div>
-      <el-text>{{ today }}</el-text>
+      <el-text>{{ ymd }} {{ week }} {{ lunar }}</el-text>
     </el-col>
   </el-row>
   <el-tabs v-model="active" @tab-click="switchTab">
