@@ -7,7 +7,7 @@ import type { TabsPaneContext } from 'element-plus'
 import { useSubTabsStore } from '@/pinia/stores/subTabs.ts'
 import { storeToRefs } from 'pinia'
 
-const today = ref('2026-03-11 星期三 农历正月廿三')
+const today = ref('2026-03-12 星期四 农历正月廿四')
 
 const active = ref('home')
 const tabs: Tabs = reactive([
@@ -44,6 +44,16 @@ const tabs: Tabs = reactive([
       { id: 71, name: 'cIBase', label: '非遗保护传承基地' },
       { id: 72, name: 'pPDBase', label: '生产性保护示范基地' },
       { id: 73, name: 'expBase', label: '非遗体验基地' },
+    ],
+  },
+  {
+    id: 80,
+    name: 'wiki',
+    label: '非遗百科',
+    image: '/src/assets/images/body/wiki.jpg',
+    children: [
+      { id: 81, name: 'calendar', label: '非遗日历' },
+      { id: 82, name: 'knowledge', label: '非遗知识' },
     ],
   },
 ])

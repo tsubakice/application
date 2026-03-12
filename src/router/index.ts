@@ -11,5 +11,6 @@ export default createRouter({
     { path: '/inheritor', component: () => import('@/views/inheritor/Index.vue') },
     { path: '/ecology', component: () => import('@/views/ecology/Index.vue') },
     { path: '/protection', component: () => import('@/views/protection/Index.vue') },
+    { path: '/wiki', component: () => import('@/views/wiki/Index.vue') },
   ],
 })
