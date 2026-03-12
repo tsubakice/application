@@ -12,5 +12,6 @@ export default createRouter({
     { path: '/ecology', component: () => import('@/views/ecology/Index.vue') },
     { path: '/protection', component: () => import('@/views/protection/Index.vue') },
     { path: '/wiki', component: () => import('@/views/wiki/Index.vue') },
+    { path: '/activity', component: () => import('@/views/activity/Index.vue') },
   ],
 })

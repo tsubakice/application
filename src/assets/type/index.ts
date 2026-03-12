@@ -14,6 +14,7 @@ interface Article {
   source?: string,
   date?: string,
   content?: string,
+  image?: string,
 }
 
 export type Types = Array<{ id: number, label: string }>

@@ -2,11 +2,24 @@
 import { useSubTabsStore } from '@/pinia/stores/subTabs.ts'
 import { storeToRefs } from 'pinia'
 import type { Articles } from '@/assets/type'
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 
 defineOptions({ name: 'Wiki' })
 
 const { active, tabs } = storeToRefs(useSubTabsStore())
+
+const list: Articles = reactive([
+  {
+    id: 0,
+    title: '藏族铜造像铸造技艺',
+    content: '藏族铜造像铸造技艺以失蜡法为核心。首先，根据成品精细雕刻蜡膜，这也是该铸造技艺最重要的环节，最能体现造型艺术的特质；其次，在蜡膜上浇淋耐火泥浆，层层阴干至所需厚度，完成铸造所用铸模；第三，根据造型特点，采用蒸煮或火烤的方式加热型壳，使铸模内部的蜡质流出，此即为失蜡；最后，再完成铸模入窑焙烧、融化金铜、鎏金、錾刻等流程，最终完成铸造成品。',
+    image: '/src/assets/images/body/box1.jpg',
+  },
+])
+
+const index = ref(0)
+const current = computed(() => list[Math.abs(index.value) % list.length]!)
+
 const articles: Articles = reactive([
   { id: 0, title: '什么是国家级文化生态保护区' },
   { id: 1, title: '我国非物质文化遗产保护工作原则是什么' },
@@ -24,7 +37,7 @@ const day = computed(() => '星期' + week[today.getDay()])
   <el-tabs v-model="active">
     <el-tab-pane :name="tabs[0]?.name" :label="tabs[0]?.label" lazy>
       <div class="time">
-        <img src="@/assets/images/body/btn-left.png" alt="left">
+        <img @click="index--" src="@/assets/images/body/btn-left.png" alt="left">
         <div class="content">
           <div class="top">
             <el-text class="day">{{ today.getDate() }}</el-text>
@@ -35,17 +48,15 @@ const day = computed(() => '星期' + week[today.getDay()])
             <el-text class="date">农历正月廿四</el-text>
           </div>
         </div>
-        <img src="@/assets/images/body/btn-right.png" alt="right">
+        <img @click="index++" src="@/assets/images/body/btn-right.png" alt="right">
       </div>
       <div class="box">
         <div class="title">
           <img src="@/assets/images/body/title-left.png" alt="left">
-          <el-text>藏族铜造像铸造技艺</el-text>
+          <el-text>{{ current.title }}</el-text>
         </div>
-        <el-text tag="p">
-          藏族铜造像铸造技艺以失蜡法为核心。首先，根据成品精细雕刻蜡膜，这也是该铸造技艺最重要的环节，最能体现造型艺术的特质；其次，在蜡膜上浇淋耐火泥浆，层层阴干至所需厚度，完成铸造所用铸模；第三，根据造型特点，采用蒸煮或火烤的方式加热型壳，使铸模内部的蜡质流出，此即为失蜡；最后，再完成铸模入窑焙烧、融化金铜、鎏金、錾刻等流程，最终完成铸造成品。
-        </el-text>
-        <img src="@/assets/images/body/box1.jpg" alt="box1">
+        <el-text tag="p">{{ current.content }}</el-text>
+        <img :src="current.image" alt="image">
       </div>
     </el-tab-pane>
     <el-tab-pane :name="tabs[1]?.name" :label="tabs[1]?.label" lazy>

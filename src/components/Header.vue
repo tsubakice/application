@@ -1,62 +1,24 @@
 <script setup lang="ts">
 import { IconChevronsRight, IconHome, IconSearch } from '@tabler/icons-vue'
-import { reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import type { Tabs } from '@/assets/type'
 import { useRoute, useRouter } from 'vue-router'
 import type { TabsPaneContext } from 'element-plus'
 import { useSubTabsStore } from '@/pinia/stores/subTabs.ts'
 import { storeToRefs } from 'pinia'
+import importTabs from '@/assets/tabs.json'
 
-const today = ref('2026-03-12 星期四 农历正月廿四')
+const week = ['日', '一', '二', '三', '四', '五', '六']
+const today = computed(() => {
+  const date = new Date()
+  const year = date.getFullYear()
+  const month = `${date.getMonth() + 1}`.padStart(2, '0')
+  const day = `${date.getDate()}`.padStart(2, '0')
+  return `${year}-${month}-${day} 星期${week[date.getDay()]} 农历正月廿四`
+})
 
 const active = ref('home')
-const tabs: Tabs = reactive([
-  { id: 10, name: 'home', label: '首页' },
-  { id: 20, name: 'organization', label: '组织机构', image: '/src/assets/images/body/organization.jpg' },
-  { id: 30, name: 'regulation', label: '组织机构', image: '/src/assets/images/body/regulation.png' },
-  { id: 40, name: 'project', label: '项目名录', image: '/src/assets/images/body/project.png' },
-  {
-    id: 50,
-    name: 'inheritor',
-    label: '非遗传承人',
-    image: '/src/assets/images/body/inheritor.png',
-    children: [
-      { id: 51, name: 'national', label: '国家级非遗代表性传承人' },
-      { id: 52, name: 'provincial', label: '省级非遗代表性传承人' },
-    ],
-  },
-  {
-    id: 60,
-    name: 'ecology',
-    label: '文化生态保护区',
-    image: '/src/assets/images/body/ecology.jpg',
-    children: [
-      { id: 61, name: 'national', label: '国家级文化生态保护区' },
-      { id: 62, name: 'provincial', label: '省级文化生态保护实验区' },
-    ],
-  },
-  {
-    id: 70,
-    name: 'protection',
-    label: '保护传承基地',
-    image: '/src/assets/images/body/protection.png',
-    children: [
-      { id: 71, name: 'cIBase', label: '非遗保护传承基地' },
-      { id: 72, name: 'pPDBase', label: '生产性保护示范基地' },
-      { id: 73, name: 'expBase', label: '非遗体验基地' },
-    ],
-  },
-  {
-    id: 80,
-    name: 'wiki',
-    label: '非遗百科',
-    image: '/src/assets/images/body/wiki.jpg',
-    children: [
-      { id: 81, name: 'calendar', label: '非遗日历' },
-      { id: 82, name: 'knowledge', label: '非遗知识' },
-    ],
-  },
-])
+const tabs: Tabs = reactive(importTabs)
 
 const router = useRouter()
 const switchToHome = () => router.push('/')
@@ -67,7 +29,7 @@ const switchTab = (tab: TabsPaneContext) => {
 }
 
 const route = useRoute()
-const subTabsStore =  useSubTabsStore()
+const subTabsStore = useSubTabsStore()
 const { active: subActive, tabs: subTabs } = storeToRefs(subTabsStore)
 watch(() => route.path, (path: string) => {
   const [, name] = path.split('/')
