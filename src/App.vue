@@ -25,6 +25,11 @@ import Footer from '@/components/Footer.vue'
   margin: 0 auto;
 }
 
+header {
+  --el-header-height: fit-content;
+  --el-header-padding: 0;
+}
+
 footer {
   --el-footer-height: 270px;
   --el-footer-padding: 0;

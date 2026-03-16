@@ -1,5 +1,11 @@
 :root {
   --app-container-width: 1200px;
+  --app-color-primary: #980f09;
+  --app-title-color: #404040;
+  --app-tab-title-color: #262626;
+  --app-text-placeholder-color: #969696;
+  --app-icon-color: #bdab85;
+  --app-transition-time: .5s;
 
   font-family: system-ui, sans-serif;
   text-rendering: optimizeLegibility;
@@ -11,4 +17,5 @@
 
 body {
   margin: 0;
+  background: url("@/assets/images/background.png") center / cover repeat-y;
 }
