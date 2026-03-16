@@ -93,7 +93,7 @@ ul {
       > p {
         width: 980px;
         --el-text-font-size: 16px;
-        --el-text-color: var(--app-text-placeholder-color);
+        --el-text-color: var(--app-placeholder-text-color);
       }
 
       > span {

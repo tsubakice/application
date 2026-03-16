@@ -1,0 +1,78 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import type { Article } from '@/assets/type'
+import Pagination from '@/components/Pagination.vue'
+
+const total = ref(33)
+const records = ref<Article[]>([
+  {
+    id: 0,
+    title: '四川省非物质文化遗产保护中心 （四川省非物质文化遗产馆） 四川省非遗馆大楼西侧外墙维修项目比选结果公告',
+    date: '2025-12-19',
+  },
+  {
+    id: 1,
+    title: '四川省非物质文化遗产保护中心 （四川省非物质文化遗产馆） 2025年度川渝非遗保护联盟活动项目比选结果公告',
+    date: '2025-12-19',
+  },
+])
+
+const requestNewRecord = (page: number, pageSize: number) => {
+  console.log(page, pageSize)
+}
+</script>
+
+<template>
+  <ul>
+    <li v-for="record in records" :key="record.id">
+      <el-text class="title">{{ record.title }}</el-text>
+      <el-text class="date">{{ record.date }}</el-text>
+    </li>
+  </ul>
+  <Pagination :total @request-new-record="requestNewRecord"/>
+</template>
+
+<style scoped lang="scss">
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px dashed var(--app-icon-color);
+  cursor: pointer;
+
+  &:hover > .title {
+    --el-text-color: var(--app-color-primary);
+  }
+}
+
+.title {
+  --el-text-font-size: 16px;
+  --el-text-color: black;
+
+  transition: color var(--app-transition-time);
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    aspect-ratio: 1 / 1;
+    margin: 0 8px 0 3px;
+    background: var(--app-color-primary);
+    transform: translateY(-2px) rotate(45deg);
+  }
+}
+
+.date {
+  --el-text-font-size: 16px;
+  --el-text-color: var(--app-placeholder-text-color);
+
+  padding-right: 24px;
+}
+</style>

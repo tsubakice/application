@@ -287,7 +287,7 @@ const { tabs: subTabs, active: subActive } = storeToRefs(subTabStore)
   margin: 20px auto;
 
   > span {
-    --el-text-color: var(--app-text-placeholder-color);
+    --el-text-color: var(--app-placeholder-text-color);
 
     cursor: default;
 

@@ -12,4 +12,5 @@ export interface Article {
   content?: string,
   source?: string,
   date?: string,
+  image?: string,
 }
