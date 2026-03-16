@@ -1,4 +1,6 @@
 :root {
+  --app-container-width: 1200px;
+
   font-family: system-ui, sans-serif;
   text-rendering: optimizeLegibility;
 }
