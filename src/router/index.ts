@@ -5,5 +5,6 @@ export default createRouter({
   routes: [
     { path: '/', redirect: '/home' },
     { path: '/home', component: () => import('@/views/Home.vue') },
+    { path: '/organization', component: () => import('@/views/organization/Index.vue') },
   ],
 })

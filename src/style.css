@@ -15,6 +15,11 @@
   box-sizing: border-box;
 }
 
+::selection {
+  background: var(--app-color-primary);
+  color: white;
+}
+
 body {
   margin: 0;
   background: url("@/assets/images/background.png") center / cover repeat-y;

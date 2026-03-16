@@ -5,3 +5,11 @@ export interface Tab {
   image?: string,
   children?: Tab[],
 }
+
+export interface Article {
+  id: number,
+  title: string,
+  content?: string,
+  source?: string,
+  date?: string,
+}

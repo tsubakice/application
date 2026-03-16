@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
+import { useRoute } from 'vue-router'
+import { ref, watch } from 'vue'
+
+const route = useRoute()
+const classObj = ref({ container: false })
+watch(() => route.path, value => {
+  const [, name] = value.split('/')
+  classObj.value.container = name !== 'home'
+})
 </script>
 
 <template>
@@ -9,7 +18,9 @@ import Footer from '@/components/Footer.vue'
       <Header/>
     </el-header>
     <el-main>
-      <RouterView/>
+      <div :class="classObj">
+        <RouterView/>
+      </div>
     </el-main>
     <el-footer>
       <div class="container">
@@ -28,6 +39,10 @@ import Footer from '@/components/Footer.vue'
 header {
   --el-header-height: fit-content;
   --el-header-padding: 0;
+}
+
+main {
+  --el-main-padding: 0;
 }
 
 footer {
