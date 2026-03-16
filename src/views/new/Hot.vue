@@ -25,7 +25,7 @@ const hots = ref<Article[]>([
 <template>
   <ul>
     <li v-for="hot in hots" :key="hot.id">
-      <img :src="hot.image" :alt="hot.title" class="cover">
+      <img :src="hot.image" alt="cover" class="cover">
       <div class="container">
         <el-text tag="p" truncated class="title">{{ hot.title }}</el-text>
         <el-text tag="p" :line-clamp="2" class="content">{{ hot.content }}</el-text>
