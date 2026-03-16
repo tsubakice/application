@@ -1,0 +1,12 @@
+:root {
+  font-family: system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
