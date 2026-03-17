@@ -10,5 +10,6 @@ export default createRouter({
     { path: '/activity', component: () => import('@/views/activity/Index.vue') },
     { path: '/visual', component: () => import('@/views/visual/Index.vue') },
     { path: '/tourism', component: () => import('@/views/tourism/Index.vue') },
+    { path: '/project', component: () => import('@/views/project/Index.vue') },
   ],
 })

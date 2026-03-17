@@ -1,0 +1,31 @@
+.el-table {
+  --el-font-size-base: 16px;
+  --el-table-text-color: black;
+  --el-table-border: none;
+
+  &:deep(.el-table__inner-wrapper)::before {
+    content: none;
+  }
+
+  &:deep(.el-table__cell) {
+    text-align: center;
+  }
+}
+
+:deep(.el-table__header) > thead {
+  --el-table-header-bg-color: #f6f4f0;
+
+  color: var(--app-icon-color);
+
+  th {
+    height: 50px;
+  }
+}
+
+:deep(.el-table__body) {
+  --el-table-border: 1px dashed var(--app-icon-color);
+
+  td {
+    height: 80px;
+  }
+}

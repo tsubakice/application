@@ -62,12 +62,6 @@ const tabs = ref<Tab[]>([
     name: 'project',
     label: '项目名录',
     image: 'https://wl-file.tsichuan.com/tour-cms/2308177e1cd70228584f29977e98e8fe212bab.png',
-    children: [
-      { id: 51, name: 'national', label: '国家级项目' },
-      { id: 52, name: 'provincial', label: '省级项目' },
-      { id: 53, name: 'municipal', label: '市级项目' },
-      { id: 54, name: 'district', label: '区级项目' },
-    ],
   },
   {
     id: 60,

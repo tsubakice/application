@@ -56,49 +56,10 @@ const keyword = ref('')
 
 <style scoped lang="scss">
 @use "@/assets/styles/inner-tabs";
+@use "@/assets/styles/form";
 
-.el-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  height: 80px;
-  margin: 32px auto;
-  background: #bfbfbf1a;
-}
-
-.el-form-item {
-  margin-bottom: 0;
-}
-
-.el-input {
-  --el-input-width: 405px;
-  --el-input-height: 40px;
-  --el-input-border-radius: 0;
-  --el-input-border-color: transparent;
-  --el-input-hover-border-color: transparent;
-  --el-input-focus-border-color: transparent;
-
-  &:deep(.el-input__wrapper) {
-    border: 1px solid var(--app-icon-color);
-  }
-}
-
-.el-button {
-  --el-button-font-weight: 400;
-  --el-button-bg-color: var(--app-color-primary);
-  --el-button-text-color: white;
-  --el-button-border-color: transparent;
-  --el-button-hover-text-color: white;
-  --el-button-hover-bg-color: var(--app-color-primary);
-  --el-button-hover-border-color: transparent;
-  --el-button-active-border-color: transparent;
-
-  width: 80px;
-  height: 40px;
-  font-size: 16px;
-  border-radius: 0;
-  border: none;
+.el-form-item:not(:last-child) {
+  --form-item-width: 405px;
 }
 
 .container {

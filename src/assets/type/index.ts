@@ -21,3 +21,18 @@ export interface Media {
   date: string,
   cover: string,
 }
+
+export interface Label {
+  id: number,
+  label: string,
+}
+
+export interface Project {
+  id: number,
+  label: string,
+  name: string,
+  type: string,
+  batch: string,
+  unit: string,
+  address: string,
+}

@@ -1,0 +1,59 @@
+.el-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 80px;
+  margin: 32px auto;
+  background: #bfbfbf1a;
+}
+
+.el-form-item {
+  --form-item-width: 345px;
+  --form-item-height: 40px;
+
+  margin-bottom: 0;
+
+  &:not(:last-child) {
+    border: 1px solid var(--app-icon-color);
+    box-shadow: 0 2px 4px 0 #0000001a;
+  }
+}
+
+.el-select {
+  --el-select-width: var(--form-item-width);
+  --el-border-color: transparent;
+  --el-border-color-hover: transparent;
+  --el-color-primary: transparent;
+  --el-border-radius-base: 0;
+
+  &:deep(.el-select__wrapper) {
+    min-height: var(--form-item-height);
+  }
+}
+
+.el-input {
+  --el-input-width: var(--form-item-width);
+  --el-input-height: var(--form-item-height);
+  --el-input-border-color: transparent;
+  --el-input-hover-border-color: transparent;
+  --el-input-focus-border-color: transparent;
+  --el-input-border-radius: 0;
+}
+
+.el-button {
+  --el-button-font-weight: 400;
+  --el-button-bg-color: var(--app-color-primary);
+  --el-button-text-color: white;
+  --el-button-border-color: transparent;
+  --el-button-hover-text-color: white;
+  --el-button-hover-bg-color: var(--app-color-primary);
+  --el-button-hover-border-color: transparent;
+  --el-button-active-border-color: transparent;
+
+  width: 80px;
+  height: var(--form-item-height);
+  font-size: 16px;
+  border-radius: 0;
+  border: none;
+}

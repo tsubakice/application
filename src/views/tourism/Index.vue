@@ -69,9 +69,10 @@ const records = ref<Article[]>([
   padding: 16px 14px;
   border-image: url("@/assets/images/item.png") 48 27 40 35 / 20px / 0 round;
   transition: box-shadow var(--app-transition-time);
+  cursor: pointer;
 
   &:hover {
-    box-shadow: 0 0 8px var(--app-icon-color);
+    box-shadow: 0 0 16px var(--app-icon-color);
   }
 }
 
