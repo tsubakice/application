@@ -12,5 +12,12 @@ export interface Article {
   content?: string,
   source?: string,
   date?: string,
-  image?: string,
+  cover?: string,
+}
+
+export interface Media {
+  id: number,
+  title: string,
+  date: string,
+  cover: string,
 }

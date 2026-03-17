@@ -8,5 +8,6 @@ export default createRouter({
     { path: '/organization', component: () => import('@/views/organization/Index.vue') },
     { path: '/new', component: () => import('@/views/new/Index.vue') },
     { path: '/activity', component: () => import('@/views/activity/Index.vue') },
+    { path: '/visual', component: () => import('@/views/visual/Index.vue') },
   ],
 })
