@@ -123,6 +123,10 @@ const inheritors = ref<Inheritor[]>([
   display: none;
 }
 
+.el-form {
+  margin-top: 0;
+}
+
 .el-form-item {
   --form-item-width: 235px;
 }

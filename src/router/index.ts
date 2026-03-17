@@ -5,7 +5,6 @@ export default createRouter({
   routes: [
     { path: '/', redirect: '/home' },
     { path: '/home', component: () => import('@/views/Home.vue') },
-    { path: '/organization', component: () => import('@/views/organization/Index.vue') },
     { path: '/new', component: () => import('@/views/new/Index.vue') },
     { path: '/activity', component: () => import('@/views/activity/Index.vue') },
     { path: '/visual', component: () => import('@/views/visual/Index.vue') },
@@ -13,5 +12,7 @@ export default createRouter({
     { path: '/project', component: () => import('@/views/project/Index.vue') },
     { path: '/inheritor', component: () => import('@/views/inheritor/Index.vue') },
     { path: '/ecology', component: () => import('@/views/ecology/Index.vue') },
+    { path: '/protection', component: () => import('@/views/protection/Index.vue') },
+    { path: '/organization', component: () => import('@/views/organization/Index.vue') },
   ],
 })

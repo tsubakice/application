@@ -50,3 +50,9 @@ export interface Inheritor {
   project: string,
   address: string,
 }
+
+export interface Base {
+  id: number,
+  name: string,
+  address: string,
+}
