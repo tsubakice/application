@@ -13,6 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppIcon: typeof import('./src/components/AppIcon.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCascader: typeof import('element-plus/es')['ElCascader']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElFooter: typeof import('element-plus/es')['ElFooter']

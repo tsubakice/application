@@ -1,6 +1,7 @@
 .el-table {
   --el-font-size-base: 16px;
   --el-table-text-color: black;
+  --el-table-row-hover-bg-color: #f8f1ef;
   --el-table-border: none;
 
   &:deep(.el-table__inner-wrapper)::before {

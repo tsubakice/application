@@ -36,3 +36,17 @@ export interface Project {
   unit: string,
   address: string,
 }
+
+export interface Region extends Label{
+  children: Region[],
+}
+
+export interface Inheritor {
+  id: number,
+  name: string,
+  gender: string,
+  ethic: string,
+  type: string,
+  project: string,
+  address: string,
+}

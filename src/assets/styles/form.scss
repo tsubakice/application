@@ -57,3 +57,15 @@
   border-radius: 0;
   border: none;
 }
+
+:deep(.el-cascader) {
+
+  > .el-input {
+    --el-input-width: var(--form-item-width);
+    --el-input-height: var(--form-item-height);
+    --el-input-border-color: transparent;
+    --el-input-hover-border-color: transparent;
+    --el-input-focus-border-color: transparent;
+    --el-input-border-radius: 0;
+  }
+}

@@ -11,5 +11,6 @@ export default createRouter({
     { path: '/visual', component: () => import('@/views/visual/Index.vue') },
     { path: '/tourism', component: () => import('@/views/tourism/Index.vue') },
     { path: '/project', component: () => import('@/views/project/Index.vue') },
+    { path: '/inheritor', component: () => import('@/views/inheritor/Index.vue') },
   ],
 })

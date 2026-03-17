@@ -13,7 +13,7 @@ const tabs = ref<Tab[]>([
   { id: 51, name: 'national', label: '国家级项目' },
   { id: 52, name: 'provincial', label: '省级项目' },
   { id: 53, name: 'municipal', label: '市级项目' },
-  { id: 54, name: 'district', label: '区级项目' },
+  { id: 54, name: 'county', label: '县级项目' },
 ])
 
 const form = ref({
@@ -113,7 +113,7 @@ const projects = ref<Project[]>([
     <el-table :data="projects">
       <el-table-column type="index" label="序号" width="100px"/>
       <el-table-column prop="label" label="项目编号" width="120px"/>
-      <el-table-column prop="name" label="项目名称" width="160px"/>
+      <el-table-column prop="name" label="项目名称" show-overflow-tooltip width="160px"/>
       <el-table-column prop="type" label="项目类别" width="160px"/>
       <el-table-column
           prop="batch"
