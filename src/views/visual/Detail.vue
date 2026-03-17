@@ -120,16 +120,16 @@ const keyword = ref('')
 
   &:hover {
     box-shadow: 0 0 8px var(--app-icon-color);
+
+    > .cover {
+      transform: scale(1.025);
+    }
   }
 }
 
 .cover {
   width: 358px;
   transition: transform var(--app-transition-time);
-
-  &:hover {
-    transform: scale(1.025);
-  }
 }
 
 .play {
