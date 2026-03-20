@@ -1,21 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { Article } from '@/assets/type'
 import Pagination from '@/components/Pagination.vue'
+import { storeToRefs } from 'pinia'
+import { useNoticeStore } from '@/stores/noticeStore.ts'
 
-const total = ref(33)
-const records = ref<Article[]>([
-  {
-    id: 0,
-    title: '四川省非物质文化遗产保护中心 （四川省非物质文化遗产馆） 四川省非遗馆大楼西侧外墙维修项目比选结果公告',
-    date: '2025-12-19',
-  },
-  {
-    id: 1,
-    title: '四川省非物质文化遗产保护中心 （四川省非物质文化遗产馆） 2025年度川渝非遗保护联盟活动项目比选结果公告',
-    date: '2025-12-19',
-  },
-])
+const { total, notices } = storeToRefs(useNoticeStore())
 
 const requestNewRecord = (page: number, pageSize: number) => {
   console.log(page, pageSize)
@@ -24,9 +12,9 @@ const requestNewRecord = (page: number, pageSize: number) => {
 
 <template>
   <ul>
-    <li v-for="record in records" :key="record.id">
-      <el-text class="title">{{ record.title }}</el-text>
-      <el-text class="date">{{ record.date }}</el-text>
+    <li v-for="notice in notices" :key="notice.id">
+      <el-text class="title">{{ notice.title }}</el-text>
+      <el-text class="date">{{ notice.date }}</el-text>
     </li>
   </ul>
   <Pagination :total @request-new-record="requestNewRecord"/>

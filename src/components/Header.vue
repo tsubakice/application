@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import AppIcon from '@/components/AppIcon.vue'
 import { IconChevronsRight, IconHome, IconSearch } from '@tabler/icons-vue'
-import { useLunarStore } from '@/stores/lunarStore.ts'
+import useLunar from '@/hooks/useLunar.ts'
 import { storeToRefs } from 'pinia'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import type { Tab } from '@/assets/type'
 import { useRoute, useRouter } from 'vue-router'
 import type { TabsPaneContext } from 'element-plus'
 import { useSubTabStore } from '@/stores/subTabStore.ts'
 
-const { year, month, day, week, date } = storeToRefs(useLunarStore())
+const { year, month, day, week, date } = useLunar()
 
 const active = ref('home')
 const tabs = ref<Tab[]>([
@@ -127,21 +127,23 @@ const findSubTabByName = (name: string) => {
 }
 
 const { tabs: subTabs, active: subActive } = storeToRefs(subTabStore)
+const isHome = computed(() => active.value === 'home')
 </script>
 
 <template>
   <el-row class="container">
     <el-col :span="12" class="left">
-      <img src="@/assets/images/logo1.png" alt="logo">
+      <img v-show="!isHome" src="@/assets/images/logo1.png" alt="logo">
+      <img v-show="isHome" src="@/assets/images/logo3.png" alt="logo">
     </el-col>
-    <el-col :span="12" class="right">
+    <el-col :span="12" class="right" :class="{ 'is-home': isHome }">
       <AppIcon size="36px" color="var(--app-title-color)" border="1px solid var(--app-title-color)">
         <IconSearch/>
       </AppIcon>
       <el-text>{{ `${year}-${month}-${day} ${week} ${date}` }}</el-text>
     </el-col>
   </el-row>
-  <el-tabs v-model="active" @tab-click="switchTab">
+  <el-tabs v-model="active" @tab-click="switchTab" :class="{ 'is-home': isHome }">
     <el-tab-pane
         v-for="tab in tabs"
         :key="tab.id"
@@ -207,6 +209,7 @@ const { tabs: subTabs, active: subActive } = storeToRefs(subTabStore)
 
     padding-left: 19px;
     font-weight: 800;
+    transition: color var(--app-transition-time);
   }
 }
 
@@ -222,6 +225,14 @@ const { tabs: subTabs, active: subActive } = storeToRefs(subTabStore)
 
   &:hover {
     transform: translateY(-5px) scale(1.1);
+  }
+}
+
+.is-home {
+  --app-title-color: white;
+
+  &:deep(.el-tabs__item) {
+    --el-text-color-primary: white;
   }
 }
 

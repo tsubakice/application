@@ -1,0 +1,37 @@
+:deep(.el-tabs__header.is-top) {
+  display: flex;
+  margin-top: 52px;
+}
+
+:deep(.el-tabs__nav) {
+  gap: 30px;
+}
+
+:deep(.el-tabs__active-bar) {
+  display: none;
+}
+
+:deep(.el-tabs__item) {
+  --el-tabs-header-height: 35px;
+  --el-font-size-base: 16px;
+  --el-text-color-primary: black;
+  --el-color-primary: var(--app-color-primary);
+
+  width: 118px;
+  padding: 0;
+  font-weight: 400;
+  background: url("@/assets/images/tab2.png") center / 100% 100% no-repeat;
+  transition: background var(--app-transition-time), transform var(--app-transition-time);
+
+  &:not(.is-active):hover {
+    --el-color-primary: var(--app-tab-title-color);
+  }
+
+  &:hover {
+    transform: scale(1);
+  }
+
+  &.is-active {
+    background-image: url("@/assets/images/tab-select2.png");
+  }
+}

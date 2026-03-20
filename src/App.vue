@@ -2,23 +2,26 @@
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import { useRoute } from 'vue-router'
-import { ref, watch } from 'vue'
+import { computed } from 'vue'
 
 const route = useRoute()
-const classObj = ref({ container: false })
-watch(() => route.path, value => {
-  const [, name] = value.split('/')
-  classObj.value.container = name !== 'home'
+const isHome = computed(() => {
+  const [, name] = route.path.split('/')
+  return name === 'home'
 })
+
+const paddingTop = computed(() => isHome.value ? '0' : '520px')
 </script>
 
 <template>
   <el-container>
     <el-header>
-      <Header/>
+      <div>
+        <Header/>
+      </div>
     </el-header>
-    <el-main>
-      <div :class="classObj">
+    <el-main :style="{ paddingTop }">
+      <div :class="{ container: !isHome }">
         <RouterView/>
       </div>
     </el-main>
@@ -39,6 +42,15 @@ watch(() => route.path, value => {
 header {
   --el-header-height: fit-content;
   --el-header-padding: 0;
+
+  > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    margin: 0 auto;
+  }
 }
 
 main {

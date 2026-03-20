@@ -13,6 +13,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppIcon: typeof import('./src/components/AppIcon.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElCascader: typeof import('element-plus/es')['ElCascader']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -33,8 +35,10 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
+    More: typeof import('./src/components/More.vue')['default']
     Pagination: typeof import('./src/components/Pagination.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Title: typeof import('./src/components/Title.vue')['default']
   }
 }
